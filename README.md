@@ -10,7 +10,7 @@ The pipeline is orchestrated using Apache Airflow and containerized with Docker 
 **NeoWs (Near Earth Object Web Service) - Feed Endpoint**  
 API URL: `https://api.nasa.gov/neo/rest/v1/browse?api_key=DEMO_KEY&page=N&size=0`
 
-This endpoint provides data on asteroids that are near Earth, including their estimated diameters, relative velocities, miss distances, and orbital information.
+This endpoint provides data on asteroids that are near Earth, including their estimated diameters and orbital information.
 
 ## Goal
 Ingest, clean, and serve only the most relevant fields for potential analysis and visualization:
