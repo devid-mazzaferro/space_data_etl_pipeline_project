@@ -16,7 +16,7 @@ API_KEY = os.getenv("NASA_API_KEY")
 DATA_DIR = "/opt/airflow/data"
 DB_URI = os.getenv("AIRFLOW__CORE__SQL_ALCHEMY_CONN")
 PROGRESS_FILE = os.path.join(DATA_DIR, "progress.json")
-PAGES_PER_RUN = 500  # Adjust to stay within rate limits
+PAGES_PER_RUN = 500
 
 
 def extract_incremental(**context):
@@ -52,9 +52,7 @@ def extract_incremental(**context):
     end_page = min(start_page + PAGES_PER_RUN, total_pages)
 
     fetched_files = []
-    final_page_fetched = last_page  # Updated only when successful
-    # return start_page, end_page
-
+    final_page_fetched = last_page
 
     for page in range(start_page, end_page):
         try:
