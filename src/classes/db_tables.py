@@ -1,5 +1,6 @@
-from sqlalchemy import Column, String, Float, Boolean
+# Compatible with SQLAlchemy <2.0 and >=2.0
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, Float, Boolean
 
 Base = declarative_base()
 

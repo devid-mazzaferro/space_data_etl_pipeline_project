@@ -1,4 +1,4 @@
-from scripts.db_utils import get_existing_ids
+from src.scripts.db_utils import get_existing_ids
 import pandas as pd
 import json
 import os
@@ -18,7 +18,11 @@ def extract_fields(obj):
         'inclination': obj.get('orbital_data', {}).get('inclination'),
         'ascending_node_lon': obj.get('orbital_data', {}).get('ascending_node_longitude'),
         'perihelion_dist': obj.get('orbital_data', {}).get('perihelion_distance'),
-        'aphelion_dist': obj.get('orbital_data', {}).get('aphelion_distance')
+        'aphelion_dist': obj.get('orbital_data', {}).get('aphelion_distance'),
+        'perihelion_argument': obj.get('orbital_data', {}).get('perihelion_argument'),
+        'mean_anomaly': obj.get('orbital_data', {}).get('mean_anomaly'),
+        'mean_motion': obj.get('orbital_data', {}).get('mean_motion'),
+        'epoch_osculation': obj.get('orbital_data', {}).get('epoch_osculation')
     }
 
 

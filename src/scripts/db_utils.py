@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
-from classes.db_tables import Base, Asteroid
+from src.classes.db_tables import Base, Asteroid
 
 sys.path.append("/opt/airflow")
 DB_URI = os.getenv("AIRFLOW__CORE__SQL_ALCHEMY_CONN")
