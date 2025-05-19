@@ -10,5 +10,9 @@ CREATE TABLE IF NOT EXISTS asteroids (
     inclination FLOAT,
     ascending_node_lon FLOAT,
     perihelion_dist FLOAT,
-    aphelion_dist FLOAT
+    aphelion_dist FLOAT,
+    perihelion_argument FLOAT,
+    mean_anomaly FLOAT,
+    mean_motion FLOAT,
+    epoch_osculation FLOAT
 );
