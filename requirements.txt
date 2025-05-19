@@ -1,7 +1,8 @@
-requests
-pandas
-fastapi
-uvicorn
+requests~=2.32.3
+pandas~=2.2.3
+fastapi~=0.115.12
+uvicorn~=0.34.2
 psycopg2-binary
-sqlalchemy
-python-dotenv
+sqlalchemy~=2.0.41
+python-dotenv~=1.1.0
+pydantic~=2.11.4
