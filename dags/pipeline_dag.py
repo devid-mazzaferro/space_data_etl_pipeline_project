@@ -8,15 +8,15 @@ import requests
 
 sys.path.append('/opt/airflow')
 
-from scripts.fetch_from_neows import fetch_asteroids
-from scripts.transform import transform
-from scripts.db_utils import load_to_db
+from src.scripts.fetch_from_neows import fetch_asteroids
+from src.scripts.transform import transform
+from src.scripts.db_utils import load_to_db
 
 API_KEY = os.getenv("NASA_API_KEY")
 DATA_DIR = "/opt/airflow/data"
 DB_URI = os.getenv("AIRFLOW__CORE__SQL_ALCHEMY_CONN")
 PROGRESS_FILE = os.path.join(DATA_DIR, "progress.json")
-PAGES_PER_RUN = 500
+PAGES_PER_RUN = 950
 
 
 def extract_incremental(**context):
