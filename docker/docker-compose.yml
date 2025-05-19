@@ -26,23 +26,23 @@ services:
     env_file:
       - ../.env
     environment:
+      - _PIP_ADDITIONAL_REQUIREMENTS=sqlalchemy<2.0
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
-      - PYTHONPATH=/opt/airflow
+      - PYTHONPATH="${PYTHONPATH}:/opt/airflow/src"
     volumes:
       - ../dags:/opt/airflow/dags
-      - ../scripts:/opt/airflow/scripts
       - ../data:/opt/airflow/data
-      - ../classes:/opt/airflow/classes
+      - ../src:/opt/airflow/src
     ports:
       - "8080:8080"
     command: >
       bash -c "
-          airflow db migrate &&
-          airflow users create --username admin --password admin --firstname Devid --lastname Mazzaferro --role Admin --email admin@example.com &&
-          airflow webserver
-        "
+        airflow db migrate &&
+        airflow users create --username admin --password admin --firstname Devid --lastname Mazzaferro --role Admin --email admin@example.com &&
+        airflow webserver
+      "
 
   scheduler:
     image: apache/airflow:2.7.2-python3.9
@@ -60,13 +60,28 @@ services:
       - PYTHONPATH=/opt/airflow
     volumes:
       - ../dags:/opt/airflow/dags
-      - ../scripts:/opt/airflow/scripts
       - ../data:/opt/airflow/data
       - ./logs:/opt/airflow/logs
-      - ../classes:/opt/airflow/classes
+      - ../src:/opt/airflow/src
     command: >
       bash -c "airflow scheduler"
-  
+
+  fastapi:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: fastapi
+    ports:
+      - "8001:8001"
+    depends_on:
+      - postgres
+    env_file:
+      - ../.env
+    environment:
+      - PYTHONPATH="${PYTHONPATH}:/app"
+    volumes:
+      - ../src:/app/src
+      - ../requirements.txt:/app/requirements.txt
 
 volumes:
   pgdata:
